@@ -44,24 +44,66 @@ char * listToString(list_t *l) {
   return buf;
 }
 
-int list_length(list_t *l) { return -1; }
+int list_length(list_t *l) { 
+  int count = 0;
+  node_t* head = l->head;
 
-void list_add_to_back(list_t *l, elem value) {}
+  while(head != NULL){
+    count = count + 1;
+    head = head->next;
+  }
+  
+  return count;
+}
+
+void list_add_to_back(list_t *l, elem value) {
+  node_t* cur_node = (node_t *) malloc(sizeof(node_t));
+  cur_node->value = value;
+  cur_node->next = NULL;
+
+  /* Insert to back*/
+  node_t* last_node = l->head;
+
+  while(last_node != NULL){
+    last_node = last_node->next;
+  }
+  last_node = cur_node;
+}
+
 void list_add_to_front(list_t *l, elem value) {
-     node_t* cur_node = (node_t *) malloc(sizeof(node_t));
-     cur_node->value = value;
-     cur_node->next = NULL;
+  node_t* cur_node = (node_t *) malloc(sizeof(node_t));
+  cur_node->value = value;
+  cur_node->next = NULL;
 
-     /* Insert to front */
+  /* Insert to front */
 
-     node_t* head = l->head;  // get head of list
+  node_t* head = l->head;  // get head of list
 
-     cur_node->next = head;
-     head = cur_node;
+
+  cur_node->next = head;
+  head = cur_node;
 
 
 }
-void list_add_at_index(list_t *l, elem value, int index) {}
+void list_add_at_index(list_t *l, elem value, int index) {
+  int curr_index = 1;
+  node_t* cur_node = (node_t *) malloc(sizeof(node_t));
+  cur_node->value = value;
+  cur_node->next = NULL;
+
+  node_t* head = l->head;
+  node_t* next;
+  while (head != NULL){
+    if (curr_index == index){
+      next = head;
+      head->value = value;
+      head->next = next;
+    }
+    curr_index = curr_index + 1
+    head = head->next;
+  }
+
+}
 
 elem list_remove_from_back(list_t *l) { return -1; }
 elem list_remove_from_front(list_t *l) { return -1; }
