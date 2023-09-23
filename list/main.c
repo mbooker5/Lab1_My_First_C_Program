@@ -33,7 +33,7 @@ int main() {
   list_remove_at_index(mylist, 3);
   list_print(mylist);
 
-  if(strcmp("100->90->70->60->50->40->30->20->10->NULL",listToString(mylist)) != 0)
+  if(strcmp("100->90->80->60->50->40->30->20->10->NULL",listToString(mylist)) != 0)
   {
         printf("list_remove_at_index : FAILED\n");
   }
@@ -48,38 +48,55 @@ int main() {
   list_remove_at_index(mylist, 6);
   list_print(mylist);
 
-  if(strcmp("90->70->60->50->40->20->10->NULL",listToString(mylist)) != 0)
+  if(strcmp("100->80->60->50->40->30->10->NULL",listToString(mylist)) != 0)
   {
-        printf("list_remove_at_index : FAILED\n");
+        printf("list_remove_at_index2 : FAILED\n");
   }
   else{
-        printf("list_remove_at_index : SUCCEEDED\n");
+        printf("list_remove_at_index2 : SUCCEEDED\n");
   }
   
 
-  // printf("The list length is %d\n", list_length(mylist));
+  printf("The list length is %d\n", list_length(mylist));
 
-  // list_add_to_back(mylist, 39);
-  // list_print(mylist);
-  // list_add_to_back(mylist, 18);
-  // list_add_to_back(mylist, 42);
-  // list_add_to_back(mylist, 190);
-  // list_print(mylist);
-  // list_free(mylist);
-  // list_print(mylist);
+  list_add_to_back(mylist, 39);
+  list_print(mylist);
+  list_add_to_back(mylist, 18);
+  list_add_to_back(mylist, 42);
+  list_add_to_back(mylist, 190);
+  list_print(mylist);
 
-  // list_add_to_front(mylist, 81);
-  // list_add_to_back(mylist, 4);
-  // list_add_to_front(mylist, 308);
-  // list_add_to_back(mylist, 70);
-  // list_add_to_front(mylist, 290);
-  // list_print(mylist);
-  // printf("The list length is %d\n", list_length(mylist));
+  if(strcmp("100->80->60->50->40->30->10->39->18->42->190->NULL",listToString(mylist)) != 0)
+  {
+        printf("list_add_to_back : FAILED\n");
+  }
+  else{
+        printf("list_add_to_back : SUCCEEDED\n");
+  }
+
+  list_free(mylist);
+  list_print(mylist);
+
+  if(strcmp("NULL",listToString(mylist)) != 0)
+  {
+        printf("list_free : FAILED\n");
+  }
+  else{
+        printf("list_free : SUCCEEDED\n");
+  }
+
+  list_add_to_front(mylist, 81);
+  list_add_to_back(mylist, 4);
+  list_add_to_front(mylist, 308);
+  list_add_to_back(mylist, 70);
+  list_add_to_front(mylist, 290);
+  list_print(mylist);
+  printf("The list length is %d\n", list_length(mylist));
   
-  // list_add_at_index(mylist, 21, 1);
-  // list_add_at_index(mylist, 65, 0);
-  // list_add_at_index(mylist, 10, 8);
-  // list_print(mylist);
+  list_add_at_index(mylist, 21, 1);
+  list_add_at_index(mylist, 65, 0);
+  list_add_at_index(mylist, 10, 8);
+  list_print(mylist);
   // list_add_at_index(mylist, 10, 7);
   // list_print(mylist);
 

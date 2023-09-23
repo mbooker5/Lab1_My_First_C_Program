@@ -16,15 +16,25 @@ list_t *list_alloc() {
 }
 
 void list_free(list_t *l) {
-  node_t* curr = l->head;
-  while(curr != NULL){
-    free(curr);
-  }
+  // node_t* curr = l->head;
+  // while(curr->next != NULL){
+  //  free(curr);
+  //  curr = curr->next;
+  // }
+  // printf("Freed");
+  // l = NULL;
+  // list_t* mylist =  (list_t *) malloc(sizeof(list_t)); 
+  // mylist->head = NULL;
+  // l = mylist;
+  free(l);
+  list_t* mylist =  (list_t *) malloc(sizeof(list_t)); 
+  mylist->head = NULL;
+  l = mylist;
 }
 
 void list_print(list_t *l) {
   node_t* curr = l->head;
-  
+
   while(curr != NULL){
     if (curr != NULL){
       printf("%d\n", curr->value);
@@ -69,12 +79,19 @@ void list_add_to_back(list_t *l, elem value) {
   cur_node->next = NULL;
 
   /* Insert to back*/
+  node_t* head = l->head;
   node_t* last_node = l->head;
 
   while(last_node != NULL){
-    last_node = last_node->next;
+    if (last_node->next != NULL){
+      last_node = last_node->next;
+    }
+    else{
+      last_node->next = cur_node;
+      l->head = head;
+      break;
+    }
   }
-  last_node = cur_node;
 }
 
 void list_add_to_front(list_t *l, elem value) {
@@ -90,23 +107,33 @@ void list_add_to_front(list_t *l, elem value) {
   head = cur_node;
   l->head = head;
 }
+
 void list_add_at_index(list_t *l, elem value, int index) {
-  int curr_index = 1;
+  int curr_index = 0;
   node_t* cur_node = (node_t *) malloc(sizeof(node_t));
   cur_node->value = value;
   cur_node->next = NULL;
 
   node_t* head = l->head;
-  node_t* next;
-  while (head != NULL){
-    if (curr_index == index){
-      next = head;
-      head->value = value;
-      head->next = next;
+  printf("%d\n", head->value);
+  node_t* index_node = l->head;
+  if (index == 0){
+    cur_node->next = head;
+    head = cur_node;
+    l->head = head;
+  } else {
+      while (index_node != NULL){
+      if (curr_index + 1 == index){
+        cur_node->next = index_node;
+        index_node->value = cur_node->value;
+        l->head = head;
+        break;
+      }
+      curr_index = curr_index + 1;
+      index_node = index_node->next;
     }
-    curr_index = curr_index + 1;
-    head = head->next;
   }
+  
 }
 
 elem list_remove_from_back(list_t *l) {
@@ -130,7 +157,7 @@ elem list_remove_from_front(list_t *l) {
 }
 
 elem list_remove_at_index(list_t *l, int index) { 
-  int curr_index = 1;
+  int curr_index = 0;
   int removed_elem = -1;
   node_t* head = l->head;
   node_t* next;
