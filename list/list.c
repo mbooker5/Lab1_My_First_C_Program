@@ -24,9 +24,16 @@ void list_free(list_t *l) {
 
 void list_print(list_t *l) {
   node_t* curr = l->head;
+  
   while(curr != NULL){
-    printf("%d\n", curr->value);
-    curr = curr->next;
+    if (curr != NULL){
+      printf("%d\n", curr->value);
+      curr = curr->next;
+    }
+    else{
+      printf("%p\n", NULL);
+      break;
+    }
   }
 }
 
@@ -79,11 +86,9 @@ void list_add_to_front(list_t *l, elem value) {
 
   node_t* head = l->head;  // get head of list
 
-
   cur_node->next = head;
   head = cur_node;
-
-
+  l->head = head;
 }
 void list_add_at_index(list_t *l, elem value, int index) {
   int curr_index = 1;
@@ -99,15 +104,52 @@ void list_add_at_index(list_t *l, elem value, int index) {
       head->value = value;
       head->next = next;
     }
-    curr_index = curr_index + 1
+    curr_index = curr_index + 1;
     head = head->next;
   }
-
 }
 
-elem list_remove_from_back(list_t *l) { return -1; }
-elem list_remove_from_front(list_t *l) { return -1; }
-elem list_remove_at_index(list_t *l, int index) { return -1; }
+elem list_remove_from_back(list_t *l) {
+  int removed_elem = -1;
+  node_t* head = l->head;
+  while (head->next != NULL){
+    head = head->next;
+  }
+  removed_elem = head->value;
+  head = NULL;
+  return removed_elem;
+}
+
+elem list_remove_from_front(list_t *l) {
+  int removed_elem = -1;
+  node_t* head = l->head;
+  removed_elem = head->value;
+  head = head->next;
+
+  return removed_elem;
+}
+
+elem list_remove_at_index(list_t *l, int index) { 
+  int curr_index = 1;
+  int removed_elem = -1;
+  node_t* head = l->head;
+  node_t* next;
+  while (head != NULL){
+    if (curr_index == index){
+      removed_elem = head->value;
+      if (head->next != NULL){
+        head->value = head->next->value;
+        head->next = head->next->next;
+      }
+      else{
+        head = NULL;
+      }
+      break;
+    }
+    curr_index = curr_index + 1;
+    head = head->next;
+  }
+}
 
 bool list_is_in(list_t *l, elem value) { return false; }
 elem list_get_elem_at(list_t *l, int index) { return -1; }

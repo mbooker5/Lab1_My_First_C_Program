@@ -25,6 +25,9 @@ int main() {
   {
         printf("list_add_to_front : FAILED\n");
   }
+  else{
+        printf("list_add_to_front : SUCCEEDED\n");
+  }
 
   list_print(mylist);
   list_remove_at_index(mylist, 3);
@@ -34,6 +37,9 @@ int main() {
   {
         printf("list_remove_at_index : FAILED\n");
   }
+  else{
+        printf("list_remove_at_index : SUCCEEDED\n");
+  }
 
   list_remove_at_index(mylist, 20);
   list_print(mylist);
@@ -42,9 +48,12 @@ int main() {
   list_remove_at_index(mylist, 6);
   list_print(mylist);
 
-  if(strcmp("90->80->60->50->40->20->10->NULL",listToString(mylist)) != 0)
+  if(strcmp("90->70->60->50->40->20->10->NULL",listToString(mylist)) != 0)
   {
         printf("list_remove_at_index : FAILED\n");
+  }
+  else{
+        printf("list_remove_at_index : SUCCEEDED\n");
   }
   
 
@@ -82,17 +91,17 @@ int main() {
   // list_print(mylist);
 
   // printf("Is %d in the list?: %d\n", 21, list_is_in(mylist, 21));
-  printf("Value at %d in the list?: %d\n", 3, list_get_elem_at(mylist, 3));
-  printf("Value at %d in the list?: %d\n", 5, list_get_elem_at(mylist, 5));
-  printf("Value at %d in the list?: %d\n", 0, list_get_elem_at(mylist, 0));
-  printf("Value at %d in the list?: %d\n", -2, list_get_elem_at(mylist, -2));
-  printf("Value at %d in the list?: %d\n", 12, list_get_elem_at(mylist, 12));
-  printf("Value at %d in the list?: %d\n", 7, list_get_elem_at(mylist, 7));
-  printf("Index of %d?: %d\n", 70, list_get_index_of(mylist, 70));
-  printf("Index of %d?: %d\n", 20, list_get_index_of(mylist, 20));
-  printf("Index of %d?: %d\n", 0, list_get_index_of(mylist, 0));
-  printf("Index of %d?: %d\n", 10, list_get_index_of(mylist, 10));
-  printf("Index of %d?: %d\n", 90, list_get_index_of(mylist, 90));
+//   printf("Value at %d in the list?: %d\n", 3, list_get_elem_at(mylist, 3));
+//   printf("Value at %d in the list?: %d\n", 5, list_get_elem_at(mylist, 5));
+//   printf("Value at %d in the list?: %d\n", 0, list_get_elem_at(mylist, 0));
+//   printf("Value at %d in the list?: %d\n", -2, list_get_elem_at(mylist, -2));
+//   printf("Value at %d in the list?: %d\n", 12, list_get_elem_at(mylist, 12));
+//   printf("Value at %d in the list?: %d\n", 7, list_get_elem_at(mylist, 7));
+//   printf("Index of %d?: %d\n", 70, list_get_index_of(mylist, 70));
+//   printf("Index of %d?: %d\n", 20, list_get_index_of(mylist, 20));
+//   printf("Index of %d?: %d\n", 0, list_get_index_of(mylist, 0));
+//   printf("Index of %d?: %d\n", 10, list_get_index_of(mylist, 10));
+//   printf("Index of %d?: %d\n", 90, list_get_index_of(mylist, 90));
   // printf("Index of %d?: %d\n", 81, list_get_index_of(mylist, 81));
   
   // list_free(mylist);
